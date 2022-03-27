@@ -24,7 +24,7 @@ app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));
 console.log(__dirname);
 //Settings
-app.set('port', process.env.PORT || 4000)
+app.set('port', process.env.PORT || 3000)
 
 app.listen(app.get('port'), ()=>{
     console.log('Server on port '+ app.get('port'));

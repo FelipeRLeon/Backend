@@ -22,7 +22,16 @@ administrator.createProduct = async (req, res) => {
 
 administrator.readProduct = async (req, res) => {
     const id = req.params.id_p;
-    res.send(id);
+    try {
+        const product = await (await pool.query('SELECT * FROM product WHERE id_p=$1', [id])).rows;
+        console.log(product);
+        res.status(200).json({product});
+    } catch (error) {
+        res.status(500).json({
+            message: 'An error has ocurred.',
+            error
+        })
+    }
 };
 
 module.exports = administrator;
