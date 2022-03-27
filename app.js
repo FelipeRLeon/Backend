@@ -13,13 +13,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(fileupload({useTempFiles: true}));
-app.use(history());
-app.use(express.static(path.join(__dirname, 'public')));
-console.log(__dirname);
+
 
 //Routes
 app.use('/', require('./routes/auth.routes'));
+app.use('/admin', require('./routes/admin.routes'));
 
+//Middlewares for Vue
+app.use(history());
+app.use(express.static(path.join(__dirname, 'public')));
+console.log(__dirname);
 //Settings
 app.set('port', process.env.PORT || 4000)
 
